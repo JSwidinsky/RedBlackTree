@@ -5,7 +5,7 @@
 
 
 /**
- * Container for a single node containing a parent, colour, key, and two siblings.
+ * Container for a single node containing a key, its colour, its parent, and two siblings.
  */
 template<class Type>
 struct Node
@@ -68,7 +68,7 @@ struct Node
  * Obeys the following five properties:
  * 1. All nodes are either red or black
  * 2. The root is always black
- * 3. Every leaf is black
+ * 3. Every leaf node (null node) is black
  * 4. If a node is red, then both of its children are black
  * 5. For all nodes, the number of black nodes to a leaf node is the same
  *
@@ -153,13 +153,15 @@ private:
 
     /**
      * Finds the min key of a tree starting at the node passed as parameter
+     * Assumes that StartNode is not null, otherwise nullptr will be returned
      * @param StartNode The node to start the min key search at
      * @return The node with the minimum key
      */
     Node<Type>* FindMinIntl(Node<Type>* StartNode) const;
 
     /**
-     * Finds the max key of a tree starting at the node passed as parameter
+     * Finds the max key of a tree starting at the node passed as parameterAssumes that StartNode is not null, otherwise nullptr will be returned
+     * Assumes that StartNode is not null, otherwise nullptr will be returned
      * @param StartNode The node to start the max key search at
      * @return The node with the maximum key
      */
@@ -213,7 +215,6 @@ RedBlackTree<Type>::~RedBlackTree()
 template<class Type>
 void RedBlackTree<Type>::Insert(const Type NewKey)
 {
-    std::cout << "Inserting key " << NewKey << std::endl;
     //if the root node is null, then insert the key into the root and colour it black
     if(!Root)
     {
@@ -274,6 +275,7 @@ void RedBlackTree<Type>::Delete(const Type KeyToDelete)
         {
             NodeToDelete->Parent->RChild = nullptr;
         }
+
         delete NodeToDelete;
         NodeToDelete = nullptr;
     }
@@ -283,17 +285,14 @@ void RedBlackTree<Type>::Delete(const Type KeyToDelete)
         if(NodeToDelete->LChild)
         {
             Node<Type>::ReplaceNode(NodeToDelete, NodeToDelete->LChild);
-
-            delete NodeToDelete;
-            NodeToDelete = nullptr;
         }
         else
         {
             Node<Type>::ReplaceNode(NodeToDelete, NodeToDelete->RChild);
-
-            delete NodeToDelete;
-            NodeToDelete = nullptr;
         }
+
+        delete NodeToDelete;
+        NodeToDelete = nullptr;
     }
     //case 3: the node to delete is an internal node with two children
     else
@@ -369,6 +368,8 @@ template<class Type>
 void RedBlackTree<Type>::TreeFixInsertion(Node<Type>* X)
 {
     Node<Type>* CurrNode = X;
+
+    //we assume the current node is coloured red; only do this loop while our parent is also coloured red
     while((CurrNode->Parent) && CurrNode->Parent->Colour == Node<Type>::NodeColour::Red)
     {
         Node<Type>* Par = CurrNode->Parent;
@@ -376,7 +377,6 @@ void RedBlackTree<Type>::TreeFixInsertion(Node<Type>* X)
         //Is Par a left child of its parent?
         if((Par->Parent->LChild) && *Par == *(Par->Parent->LChild))
         {
-            std::cout << "Performing fix-up on left child" << std::endl;
             Node<Type>* Y = Par->Parent->RChild;
             if(!Y || Y->Colour == Node<Type>::NodeColour::Black)
             {
@@ -390,7 +390,7 @@ void RedBlackTree<Type>::TreeFixInsertion(Node<Type>* X)
                 CurrNode->Parent->Parent->Colour = Node<Type>::NodeColour::Red;
                 RightRotation(CurrNode->Parent->Parent);
             }
-            else
+            else //we are going to recolour the nodes
             {
                 Par->Colour = Node<Type>::NodeColour::Black;
                 Y->Colour = Node<Type>::NodeColour::Black;
@@ -402,7 +402,6 @@ void RedBlackTree<Type>::TreeFixInsertion(Node<Type>* X)
         }
         else  //We know Par is a right child of its parent
         {
-            std::cout << "Performing fix-up on right child" << std::endl;
             Node<Type>* Y = Par->Parent->LChild;
             if(!Y || Y->Colour == Node<Type>::NodeColour::Black)
             {
@@ -416,7 +415,7 @@ void RedBlackTree<Type>::TreeFixInsertion(Node<Type>* X)
                 CurrNode->Parent->Parent->Colour = Node<Type>::NodeColour::Red;
                 LeftRotation(CurrNode->Parent->Parent);
             }
-            else
+            else //we are going to recolour the nodes
             {
                 Par->Colour = Node<Type>::NodeColour::Black;
                 Y->Colour = Node<Type>::NodeColour::Black;
@@ -436,7 +435,6 @@ void RedBlackTree<Type>::TreeFixInsertion(Node<Type>* X)
 template<class Type>
 void RedBlackTree<Type>::LeftRotation(Node<Type>* X)
 {
-    std::cout << "Performing left rotation" << std::endl;
     Node<Type>* Y = X->RChild;
 
     //move Y's left child to the right child of X and modify the child's parent if necessary
@@ -473,7 +471,6 @@ void RedBlackTree<Type>::LeftRotation(Node<Type>* X)
 template<class Type>
 void RedBlackTree<Type>::RightRotation(Node<Type>* X)
 {
-    std::cout << "Performing right rotation" << std::endl;
     Node<Type>* Y = X->LChild;
 
     X->LChild = Y->RChild;

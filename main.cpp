@@ -9,14 +9,14 @@ int main()
 
     RedBlackTree<int>* RBT = new RedBlackTree<int>();
 
-    for(int i = 1; i <= 10; i++)
-       RBT->Insert(i);
+    for(int i = 1; i <= 1000; i++)
+    {
+        RBT->Insert(i);
+    }
 
     //RBT->PreOrder();
 
     //RBT->PreOrder();
-
-    RBT->Delete(9);
 
     RBT->PreOrder();
 
