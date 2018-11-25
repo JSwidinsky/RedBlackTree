@@ -1,6 +1,8 @@
 #include <iostream>
+#include <fstream>
 #include <ctime>
 #include <cstdlib>
+#include <vector>
 #include "RedBlackTree.h"
 using namespace std;
 int main()
@@ -9,16 +11,40 @@ int main()
 
     RedBlackTree<int>* RBT = new RedBlackTree<int>();
 
-    for(int i = 1; i <= 1000; i++)
+    ifstream Input("./RandNums.dat");
+
+    vector<int> randNums;
+
+    bool FillFromFile = true;
+    if(FillFromFile)
     {
-        RBT->Insert(i);
+        for (int i = 0; i < 10000; i++)
+        {
+            int a;
+            Input >> a;
+            RBT->Insert(a);
+
+            if(i % 5 == 0)
+                randNums.push_back(a);
+        }
+    }
+    else
+    {
+        for (int i = 1; i <= 10; i++)
+        {
+            RBT->Insert(i);
+        }
     }
 
-    //RBT->PreOrder();
+    for(int i : randNums)
+    {
+        RBT->Delete(i);
+    }
 
-    //RBT->PreOrder();
 
     RBT->PreOrder();
+    cout << RBT->GetSize() << endl;
+    //RBT->InOrder();
 
     delete RBT;
 

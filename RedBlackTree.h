@@ -2,6 +2,8 @@
 #define REDBLACKTREE_REDBLACKTREE_H
 
 #include <iostream>
+#include <memory>
+#include <algorithm>
 
 
 /**
@@ -31,27 +33,32 @@ struct Node
     }
      */
 
+    /** Is this node a leaf? */
     bool IsLeaf() const
     {
         return !RChild && !LChild;
     }
 
-    static void ReplaceNode(Node<Type>* ParentNode, Node<Type>* ChildNode)
+    /** Tests to see if this node is black */
+    static bool TestColourBlack(const Node<Type>* TestNode)
     {
-        ChildNode->Parent = ParentNode->Parent;
-        if((ParentNode->Parent->LChild) && *(ParentNode->Parent->LChild) == *ParentNode)
-        {
-            ParentNode->Parent->LChild = ChildNode;
-        }
-        else
-        {
-            ParentNode->Parent->RChild = ChildNode;
-        }
+        return !TestNode || TestNode->Colour == NodeColour::Black;
+    }
+
+    /** Tests to see if this node is red */
+    static bool TestColourRed(const Node<Type>* TestNode)
+    {
+        return TestNode && TestNode->Colour == NodeColour::Red;
     }
 
     bool operator==(const Node Right) const
     {
         return this->Key == Right.Key;
+    }
+
+    bool operator!=(const Node Right) const
+    {
+        return !(*this == Right);
     }
 
     Node* Parent;
@@ -123,6 +130,37 @@ public:
     int GetSize() const;
 
 
+
+    int GetHeight() const
+    {
+        return GetHeightIntl(Root);
+    }
+
+    int GetHeightIntl(Node<Type>* Curr) const
+    {
+        if(!Curr)
+            return -1;
+
+        return std::max(GetHeightIntl(Curr->LChild), GetHeightIntl(Curr->RChild)) + 1;
+    }
+    /*
+    int GetHeight() const
+    {
+        return GetHeightIntl(Root);
+    }
+
+    int GetHeightIntl(Node<Type>* Curr) const
+    {
+        if(!Curr)
+            return 0;
+
+        if(Curr->Colour == Node<Type>::NodeColour::Black)
+            return GetHeightIntl(Curr->LChild) + 1;
+        else
+            return GetHeightIntl(Curr->LChild);
+    }
+    */
+
     void InOrder() const;
     void PreOrder() const;
 
@@ -135,7 +173,19 @@ private:
      */
     Node<Type>* FindIntl(const Type KeyToFind) const;
 
+    /**
+     * Fixes the tree after an insertion so that the red-black properties are obeyed
+     * @param X Node that was inserted
+     */
     void TreeFixInsertion(Node<Type>* X);
+
+    /**
+     * Fixes tree after deletion so that the red-black properties are obeyed
+     * @param X Node that replaced the deleted node
+     * @param Y Parent of X; needed only in the case when X is null
+     * @param DeletedKey Key that was removed from tree; used to initialize X, should X be null
+     */
+     void TreeFixDeletion(Node<Type>* X, Node<Type>* Y, Type DeletedKey);
 
     /**
      * Performs a left rotation in the tree at node X
@@ -150,6 +200,22 @@ private:
      * @param X Node to perform the right rotation on
      */
     void RightRotation(Node<Type>* X);
+
+    /**
+     * Helper function to delete a leaf node from the tree
+     * Assumes that the node is a leaf (does not internal checks to see if this assumption is true)
+     * @param NodeToDelete Pointer to the node that is to be deleted
+     */
+    void DeleteLeaf(Node<Type>* NodeToDelete);
+
+    /**
+     * Helper function to delete a node with one child from the tree
+     * Assumes that the node has at most one child (does no internal checks to see if this assumption is true)
+     * @param NodeToDelete Pointer to the node that is to be deleted
+     */
+    void DeleteNodeOneChild(Node<Type>* NodeToDelete);
+
+    void ReplaceNode(Node<Type>* ParentNode, Node<Type>* ChildNode);
 
     /**
      * Finds the min key of a tree starting at the node passed as parameter
@@ -229,25 +295,25 @@ void RedBlackTree<Type>::Insert(const Type NewKey)
     //If find returns a node that does not match the new key, then we need to insert that key
     if(Par->Key != NewKey)
     {
-        Node<Type>* CurrNode;
+        Node<Type>* InsertedNode;
         if (NewKey < Par->Key)
         {
             Par->LChild = new Node<Type>(NewKey);
-            CurrNode = Par->LChild;
+            InsertedNode = Par->LChild;
         }
         else
         {
             Par->RChild = new Node<Type>(NewKey);
-            CurrNode = Par->RChild;
+            InsertedNode = Par->RChild;
         }
 
-        CurrNode->Colour = Node<Type>::NodeColour::Red;
-        CurrNode->Parent = Par;
-        CurrNode->RChild = nullptr;
-        CurrNode->LChild = nullptr;
+        InsertedNode->Colour = Node<Type>::NodeColour::Red;
+        InsertedNode->Parent = Par;
+        InsertedNode->RChild = nullptr;
+        InsertedNode->LChild = nullptr;
         Size++;
 
-        TreeFixInsertion(CurrNode);
+        TreeFixInsertion(InsertedNode);
     }
 }
 
@@ -264,44 +330,74 @@ void RedBlackTree<Type>::Delete(const Type KeyToDelete)
 
     typename Node<Type>::NodeColour OriginalColour = NodeToDelete->Colour;
 
-    //case 1: the node to delete is a leaf
-    if(NodeToDelete->IsLeaf())
-    {
-        if((NodeToDelete->Parent->LChild) && *(NodeToDelete->Parent->LChild) == *NodeToDelete)
-        {
-            NodeToDelete->Parent->LChild = nullptr;
-        }
-        else
-        {
-            NodeToDelete->Parent->RChild = nullptr;
-        }
+    Node<Type>* ReplacementNode;
+    Node<Type>* ReplacementNodeParent;
 
-        delete NodeToDelete;
-        NodeToDelete = nullptr;
+    //special case: if the root is the only node left, then just delete the root
+    if(Size == 1)
+    {
+        delete Root;
+        Root = nullptr;
+        OriginalColour = Node<Type>::NodeColour::Red;
+    }
+    //case 1: the node to delete is a leaf
+    else if(NodeToDelete->IsLeaf())
+    {
+        ReplacementNodeParent = NodeToDelete->Parent;
+        DeleteLeaf(NodeToDelete);
+        ReplacementNode = nullptr;
     }
     //case 2: the node to delete has one child
     else if(!NodeToDelete->LChild || !NodeToDelete->RChild)
     {
         if(NodeToDelete->LChild)
         {
-            Node<Type>::ReplaceNode(NodeToDelete, NodeToDelete->LChild);
+            ReplacementNode = NodeToDelete->LChild;
         }
         else
         {
-            Node<Type>::ReplaceNode(NodeToDelete, NodeToDelete->RChild);
+            ReplacementNode = NodeToDelete->RChild;
         }
 
-        delete NodeToDelete;
-        NodeToDelete = nullptr;
+        ReplacementNodeParent = ReplacementNode->Parent;
+        DeleteNodeOneChild(NodeToDelete);
     }
     //case 3: the node to delete is an internal node with two children
     else
     {
         Node<Type>* MinNode = FindMinIntl(NodeToDelete->RChild);
+        OriginalColour = MinNode->Colour;
 
+        NodeToDelete->Key = MinNode->Key;
+
+        if(MinNode->IsLeaf())
+        {
+            ReplacementNodeParent = MinNode->Parent;
+            DeleteLeaf(MinNode);
+            ReplacementNode = nullptr;
+        }
+        else
+        {
+            if(MinNode->LChild)
+            {
+                ReplacementNode = MinNode->LChild;
+            }
+            else
+            {
+                ReplacementNode = MinNode->RChild;
+            }
+
+            ReplacementNodeParent = ReplacementNode->Parent;
+            DeleteNodeOneChild(MinNode);
+        }
     }
 
     Size--;
+
+    if(OriginalColour == Node<Type>::NodeColour::Black && Size != 0)
+    {
+        TreeFixDeletion(ReplacementNode, ReplacementNodeParent, KeyToDelete);
+    }
 }
 
 template<class Type>
@@ -378,9 +474,9 @@ void RedBlackTree<Type>::TreeFixInsertion(Node<Type>* X)
         if((Par->Parent->LChild) && *Par == *(Par->Parent->LChild))
         {
             Node<Type>* Y = Par->Parent->RChild;
-            if(!Y || Y->Colour == Node<Type>::NodeColour::Black)
+            if(Node<Type>::TestColourBlack(Y))
             {
-                if((Par->RChild) && *(Par->RChild) == *X)
+                if((Par->RChild) && *(Par->RChild) == *CurrNode)
                 {
                     CurrNode = Par;
                     LeftRotation(CurrNode);
@@ -403,9 +499,9 @@ void RedBlackTree<Type>::TreeFixInsertion(Node<Type>* X)
         else  //We know Par is a right child of its parent
         {
             Node<Type>* Y = Par->Parent->LChild;
-            if(!Y || Y->Colour == Node<Type>::NodeColour::Black)
+            if(Node<Type>::TestColourBlack(Y))
             {
-                if((Par->LChild) && *(Par->LChild) == *X)
+                if((Par->LChild) && *(Par->LChild) == *CurrNode)
                 {
                     CurrNode = Par;
                     RightRotation(CurrNode);
@@ -430,6 +526,179 @@ void RedBlackTree<Type>::TreeFixInsertion(Node<Type>* X)
     }
     this->Root->Colour = Node<Type>::NodeColour::Black;
     CurrNode = nullptr;
+}
+
+template<class Type>
+void RedBlackTree<Type>::TreeFixDeletion(Node<Type>* X, Node<Type>* Y, Type DeletedKey)
+{
+    bool XWasNull = false;
+    if(!X)
+    {
+        X = new Node<Type>();
+        X->Parent = Y;
+        X->Colour = Node<Type>::NodeColour::Black;
+        X->Key = DeletedKey;
+
+        XWasNull = true;
+
+        if(!Y->LChild)
+        {
+            Y->LChild = X;
+        }
+        else
+        {
+            Y->RChild = X;
+        }
+
+    }
+
+    while((*X != *Root || XWasNull) && X->Colour == Node<Type>::NodeColour::Black)
+    {
+        if((X->Parent->LChild) && *(X->Parent->LChild) == *X)
+        {
+            Node<Type>* Sibling = X->Parent->RChild;
+            if(Node<Type>::TestColourRed(Sibling))
+            {
+                Sibling->Colour = Node<Type>::NodeColour::Black;
+                X->Parent->Colour = Node<Type>::NodeColour::Red;
+                LeftRotation(X->Parent);
+
+                Sibling = X->Parent->RChild;
+            }
+
+            //@todo: can sibling ever be null?
+            if(Node<Type>::TestColourBlack(Sibling->LChild) && Node<Type>::TestColourBlack(Sibling->RChild))
+            {
+                Sibling->Colour = Node<Type>::NodeColour::Red;
+
+                if(XWasNull)
+                {
+                    if((Y->LChild) && *Y->LChild == *X)
+                    {
+                        Y->LChild = nullptr;
+                    }
+                    else
+                    {
+                        Y->RChild = nullptr;
+                    }
+
+                    delete X;
+                    XWasNull = false;
+                    X = Y;
+                }
+                else
+                {
+                    X = X->Parent;
+                }
+            }
+            else if(Node<Type>::TestColourBlack(Sibling->RChild))
+            {
+                Sibling->Colour = Node<Type>::NodeColour::Red;
+                Sibling->LChild->Colour = Node<Type>::NodeColour::Black;
+                RightRotation(Sibling);
+                Sibling = X->Parent->RChild;
+
+            }
+
+            if(Node<Type>::TestColourRed(Sibling->RChild))
+            {
+                //case 4
+                Sibling->Colour = Node<Type>::NodeColour::Red;
+                X->Parent->Colour = Node<Type>::NodeColour::Black;
+                Sibling->RChild->Colour = Node<Type>::NodeColour::Black;
+                LeftRotation(X->Parent);
+
+                if(XWasNull)
+                {
+                    if((Y->LChild) && *Y->LChild == *X)
+                    {
+                        Y->LChild = nullptr;
+                    }
+                    else
+                    {
+                        Y->RChild = nullptr;
+                    }
+
+                    delete X;
+                    XWasNull = false;
+                }
+
+                X = Root;
+            }
+        }
+        else
+        {
+            Node<Type>* Sibling = X->Parent->LChild;
+            if(Node<Type>::TestColourRed(Sibling))
+            {
+                Sibling->Colour = Node<Type>::NodeColour::Black;
+                X->Parent->Colour = Node<Type>::NodeColour::Red;
+                RightRotation(X->Parent);
+
+                Sibling = X->Parent->LChild;
+            }
+
+            //@todo: can sibling ever be null?
+            if(Node<Type>::TestColourBlack(Sibling->LChild) && Node<Type>::TestColourBlack(Sibling->RChild))
+            {
+                Sibling->Colour = Node<Type>::NodeColour::Red;
+
+                if(XWasNull)
+                {
+                    if((Y->LChild) && *Y->LChild == *X)
+                    {
+                        Y->LChild = nullptr;
+                    }
+                    else
+                    {
+                        Y->RChild = nullptr;
+                    }
+
+                    delete X;
+                    XWasNull = false;
+                    X = Y;
+                }
+                else
+                {
+                    X = X->Parent;
+                }
+            }
+            else if(Node<Type>::TestColourBlack(Sibling->LChild))
+            {
+                Sibling->Colour = Node<Type>::NodeColour::Red;
+                Sibling->RChild->Colour = Node<Type>::NodeColour::Black;
+                LeftRotation(Sibling);
+                Sibling = X->Parent->LChild;
+
+            }
+
+            if(Node<Type>::TestColourRed(Sibling->LChild))
+            {
+                //case 4
+                Sibling->Colour = Node<Type>::NodeColour::Red;
+                X->Parent->Colour = Node<Type>::NodeColour::Black;
+                Sibling->LChild->Colour = Node<Type>::NodeColour::Black;
+                RightRotation(X->Parent);
+
+                if(XWasNull)
+                {
+                    if((Y->LChild) && *Y->LChild == *X)
+                    {
+                        Y->LChild = nullptr;
+                    }
+                    else
+                    {
+                        Y->RChild = nullptr;
+                    }
+
+                    delete X;
+                    XWasNull = false;
+                }
+                X = Root;
+            }
+        }
+    }
+    X->Colour = Node<Type>::NodeColour::Black;
 }
 
 template<class Type>
@@ -501,6 +770,56 @@ void RedBlackTree<Type>::RightRotation(Node<Type>* X)
 
     Y = nullptr;
     Par = nullptr;
+}
+
+template<class Type>
+void RedBlackTree<Type>::DeleteLeaf(Node<Type>* NodeToDelete)
+{
+    if((NodeToDelete->Parent->LChild) && *(NodeToDelete->Parent->LChild) == *NodeToDelete)
+    {
+        NodeToDelete->Parent->LChild = nullptr;
+    }
+    else
+    {
+        NodeToDelete->Parent->RChild = nullptr;
+    }
+
+    delete NodeToDelete;
+    NodeToDelete = nullptr;
+}
+
+template<class Type>
+void RedBlackTree<Type>::DeleteNodeOneChild(Node<Type>* NodeToDelete)
+{
+    if(NodeToDelete->LChild)
+    {
+        ReplaceNode(NodeToDelete, NodeToDelete->LChild);
+    }
+    else
+    {
+        ReplaceNode(NodeToDelete, NodeToDelete->RChild);
+    }
+
+    delete NodeToDelete;
+    NodeToDelete = nullptr;
+}
+
+template<class Type>
+void RedBlackTree<Type>::ReplaceNode(Node<Type>* ParentNode, Node<Type>* ChildNode)
+{
+    ChildNode->Parent = ParentNode->Parent;
+    if(!(ParentNode->Parent))
+    {
+        this->Root = ChildNode;
+    }
+    else if((ParentNode->Parent->LChild) && *(ParentNode->Parent->LChild) == *ParentNode)
+    {
+        ParentNode->Parent->LChild = ChildNode;
+    }
+    else
+    {
+        ParentNode->Parent->RChild = ChildNode;
+    }
 }
 
 template<class Type>
