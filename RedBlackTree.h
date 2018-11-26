@@ -130,7 +130,6 @@ public:
     int GetSize() const;
 
 
-
     int GetHeight() const
     {
         return GetHeightIntl(Root);
@@ -215,6 +214,11 @@ private:
      */
     void DeleteNodeOneChild(Node<Type>* NodeToDelete);
 
+    /**
+     * Replaces a child node with that of its parent
+     * @param ParentNode Parent node of child
+     * @param ChildNode Child node of parent
+     */
     void ReplaceNode(Node<Type>* ParentNode, Node<Type>* ChildNode);
 
     /**

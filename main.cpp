@@ -24,7 +24,7 @@ int main()
             Input >> a;
             RBT->Insert(a);
 
-            if(i % 5 == 0)
+            if(i % 2 == 0)
                 randNums.push_back(a);
         }
     }
@@ -41,8 +41,7 @@ int main()
         RBT->Delete(i);
     }
 
-
-    RBT->PreOrder();
+    //RBT->PreOrder();
     cout << RBT->GetSize() << endl;
     //RBT->InOrder();
 

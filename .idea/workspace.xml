@@ -14,10 +14,7 @@
     <list default="true" id="203271fc-f988-4de5-8870-d183da22fbf9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RedBlackTree.h" beforeDir="false" afterPath="$PROJECT_DIR$/RedBlackTree.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RedBlackTree.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RedBlackTree.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RedBlackTree.dir/RedBlackTree.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RedBlackTree.dir/RedBlackTree.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RedBlackTree.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RedBlackTree.dir/main.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/RandNums.dat" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/RandNums.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/RedBlackTree" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/RedBlackTree" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
@@ -33,15 +30,15 @@
     <session id="-852533850">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="15" />
+          <entry key="project.closed" value="17" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.7" value="5" />
-          <entry key="project.open.time.8" value="6" />
-          <entry key="project.opened" value="17" />
+          <entry key="project.open.time.8" value="7" />
+          <entry key="project.opened" value="18" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -57,14 +54,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cpp" value="3451" />
-          <entry key="h" value="21554" />
+          <entry key="cpp" value="3460" />
+          <entry key="h" value="21665" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Doxygen file" value="46" />
-          <entry key="ObjectiveC" value="24959" />
+          <entry key="Doxygen file" value="47" />
+          <entry key="ObjectiveC" value="25078" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -73,10 +70,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="91">
+            <state relative-caret-position="363">
               <caret line="26" column="20" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
@@ -85,13 +82,38 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/RedBlackTree.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="353">
-              <caret line="569" selection-start-line="569" selection-end-line="569" />
+            <state relative-caret-position="1241">
+              <caret line="130" selection-start-line="130" selection-end-line="130" />
               <folding>
                 <element signature="e#73#92#0" expanded="true" />
+                <element signature="e#1785#1797#0" expanded="true" />
+                <element signature="e#7354#7366#0" expanded="true" />
+                <element signature="e#7449#7461#0" expanded="true" />
+                <element signature="e#7623#7635#0" expanded="true" />
+                <element signature="e#7703#7715#0" expanded="true" />
+                <element signature="e#8724#8736#0" expanded="true" />
+                <element signature="e#10908#10920#0" expanded="true" />
+                <element signature="e#11081#11093#0" expanded="true" />
+                <element signature="e#11191#11203#0" expanded="true" />
+                <element signature="e#11301#11313#0" expanded="true" />
+                <element signature="e#11477#11489#0" expanded="true" />
+                <element signature="e#11560#11572#0" expanded="true" />
+                <element signature="e#12060#12072#0" expanded="true" />
+                <element signature="e#14438#14450#0" expanded="true" />
+                <element signature="e#19559#19571#0" expanded="true" />
+                <element signature="e#20234#20246#0" expanded="true" />
+                <element signature="e#20817#20829#0" expanded="true" />
+                <element signature="e#21179#21191#0" expanded="true" />
+                <element signature="e#21505#21517#0" expanded="true" />
+                <element signature="e#21952#21964#0" expanded="true" />
+                <element signature="e#22243#22255#0" expanded="true" />
+                <element signature="e#22534#22546#0" expanded="true" />
+                <element signature="e#22817#22829#0" expanded="true" />
+                <element signature="e#23014#23026#0" expanded="true" />
+                <element signature="e#23104#23116#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -111,8 +133,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/RedBlackTree.cpp" />
-        <option value="$PROJECT_DIR$/RedBlackTree.h" />
         <option value="$PROJECT_DIR$/main.cpp" />
+        <option value="$PROJECT_DIR$/RedBlackTree.h" />
       </list>
     </option>
   </component>
@@ -147,7 +169,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -159,6 +180,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -223,11 +245,12 @@
       <workItem from="1543094349897" duration="106000" />
       <workItem from="1543094528105" duration="9660000" />
       <workItem from="1543162982844" duration="9365000" />
+      <workItem from="1543177031044" duration="701000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52163000" />
+    <option name="totallyTimeSpent" value="52870000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -240,15 +263,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18428335" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18649696" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.2454054" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.34270272" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.34270272" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32972974" />
@@ -274,13 +296,8 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.cpp</url>
-          <line>44</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/RedBlackTree.h</url>
-          <line>338</line>
+          <line>342</line>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
       </breakpoints>
@@ -304,22 +321,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RedBlackTree.h">
+    <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="569" selection-start-line="569" selection-end-line="569" />
+        <state relative-caret-position="363">
+          <caret line="26" column="20" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
           <folding>
-            <element signature="e#73#92#0" expanded="true" />
+            <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.cpp">
+    <entry file="file://$PROJECT_DIR$/RedBlackTree.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="26" column="20" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
+        <state relative-caret-position="1241">
+          <caret line="130" selection-start-line="130" selection-end-line="130" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#73#92#0" expanded="true" />
+            <element signature="e#1785#1797#0" expanded="true" />
+            <element signature="e#7354#7366#0" expanded="true" />
+            <element signature="e#7449#7461#0" expanded="true" />
+            <element signature="e#7623#7635#0" expanded="true" />
+            <element signature="e#7703#7715#0" expanded="true" />
+            <element signature="e#8724#8736#0" expanded="true" />
+            <element signature="e#10908#10920#0" expanded="true" />
+            <element signature="e#11081#11093#0" expanded="true" />
+            <element signature="e#11191#11203#0" expanded="true" />
+            <element signature="e#11301#11313#0" expanded="true" />
+            <element signature="e#11477#11489#0" expanded="true" />
+            <element signature="e#11560#11572#0" expanded="true" />
+            <element signature="e#12060#12072#0" expanded="true" />
+            <element signature="e#14438#14450#0" expanded="true" />
+            <element signature="e#19559#19571#0" expanded="true" />
+            <element signature="e#20234#20246#0" expanded="true" />
+            <element signature="e#20817#20829#0" expanded="true" />
+            <element signature="e#21179#21191#0" expanded="true" />
+            <element signature="e#21505#21517#0" expanded="true" />
+            <element signature="e#21952#21964#0" expanded="true" />
+            <element signature="e#22243#22255#0" expanded="true" />
+            <element signature="e#22534#22546#0" expanded="true" />
+            <element signature="e#22817#22829#0" expanded="true" />
+            <element signature="e#23014#23026#0" expanded="true" />
+            <element signature="e#23104#23116#0" expanded="true" />
           </folding>
         </state>
       </provider>
