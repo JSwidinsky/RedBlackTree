@@ -90,6 +90,9 @@
 		<Unit filename="/home/josh/Documents/RedBlackTree/RedBlackTree.h">
 			<Option target="RedBlackTree"/>
 		</Unit>
+		<Unit filename="/home/josh/Documents/RedBlackTree/SmartPointer.h">
+			<Option target="RedBlackTree"/>
+		</Unit>
 		<Unit filename="/home/josh/Documents/RedBlackTree/main.cpp">
 			<Option target="RedBlackTree"/>
 		</Unit>

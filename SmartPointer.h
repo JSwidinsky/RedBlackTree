@@ -1,0 +1,8 @@
+//
+// Created by josh on 25/11/18.
+//
+
+#ifndef REDBLACKTREE_SMARTPOINTER_H
+#define REDBLACKTREE_SMARTPOINTER_H
+
+#endif //REDBLACKTREE_SMARTPOINTER_H
