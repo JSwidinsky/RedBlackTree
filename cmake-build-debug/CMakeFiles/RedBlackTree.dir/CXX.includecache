@@ -6,12 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/josh/Documents/RedBlackTree/RedBlackTree.cpp
-iostream
--
-RedBlackTree.h
-/home/josh/Documents/RedBlackTree/RedBlackTree.h
-
 /home/josh/Documents/RedBlackTree/RedBlackTree.h
 iostream
 -
