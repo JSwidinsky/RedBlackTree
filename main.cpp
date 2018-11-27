@@ -9,6 +9,7 @@ int main()
 {
     srand(time(0));
 
+
     RedBlackTree<int>* RBT = new RedBlackTree<int>();
 
     ifstream Input("./RandNums.dat");
@@ -18,7 +19,7 @@ int main()
     bool FillFromFile = true;
     if(FillFromFile)
     {
-        for (int i = 0; i < 10000; i++)
+        for (int i = 0; i < 100000; i++)
         {
             int a;
             Input >> a;
@@ -37,9 +38,14 @@ int main()
     }
 
     for(int i : randNums)
+    //for(int i = 1; i <= 10; i++)
     {
         RBT->Delete(i);
     }
+
+    //RBT->Delete(5);
+    //RBT->Delete(9);
+    //RBT->Delete(10);
 
     //RBT->PreOrder();
     cout << RBT->GetSize() << endl;

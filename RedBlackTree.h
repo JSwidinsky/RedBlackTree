@@ -5,7 +5,6 @@
 #include <memory>
 #include <algorithm>
 
-
 /**
  * Container for a single node containing a key, its colour, its parent, and two siblings.
  */
@@ -25,13 +24,15 @@ struct Node
         Parent = RChild = LChild = nullptr;
     }
 
-    /*
+
     ~Node()
     {
         delete RChild;
         delete LChild;
     }
-     */
+
+
+
 
     /** Is this node a leaf? */
     bool IsLeaf() const
@@ -51,12 +52,12 @@ struct Node
         return TestNode && TestNode->Colour == NodeColour::Red;
     }
 
-    bool operator==(const Node Right) const
+    bool operator==(const Node& Right) const
     {
         return this->Key == Right.Key;
     }
 
-    bool operator!=(const Node Right) const
+    bool operator!=(const Node& Right) const
     {
         return !(*this == Right);
     }
@@ -319,23 +320,29 @@ void RedBlackTree<Type>::Insert(const Type NewKey)
 
         TreeFixInsertion(InsertedNode);
     }
+
+    Par = nullptr;
 }
 
 template<class Type>
 void RedBlackTree<Type>::Delete(const Type KeyToDelete)
 {
+    if(Size == 0)
+        return;
+
     Node<Type>* NodeToDelete = FindIntl(KeyToDelete);
 
     //if the key doesn't exist in our tree, then just return
     if(NodeToDelete->Key != KeyToDelete)
     {
+        NodeToDelete = nullptr;
         return;
     }
 
     typename Node<Type>::NodeColour OriginalColour = NodeToDelete->Colour;
 
-    Node<Type>* ReplacementNode;
-    Node<Type>* ReplacementNodeParent;
+    Node<Type>* ReplacementNode = nullptr;
+    Node<Type>* ReplacementNodeParent = nullptr;
 
     //special case: if the root is the only node left, then just delete the root
     if(Size == 1)
@@ -349,7 +356,6 @@ void RedBlackTree<Type>::Delete(const Type KeyToDelete)
     {
         ReplacementNodeParent = NodeToDelete->Parent;
         DeleteLeaf(NodeToDelete);
-        ReplacementNode = nullptr;
     }
     //case 2: the node to delete has one child
     else if(!NodeToDelete->LChild || !NodeToDelete->RChild)
@@ -363,7 +369,8 @@ void RedBlackTree<Type>::Delete(const Type KeyToDelete)
             ReplacementNode = NodeToDelete->RChild;
         }
 
-        ReplacementNodeParent = ReplacementNode->Parent;
+        //ReplacementNodeParent = ReplacementNode->Parent;
+        ReplacementNodeParent = NodeToDelete->Parent;
         DeleteNodeOneChild(NodeToDelete);
     }
     //case 3: the node to delete is an internal node with two children
@@ -378,7 +385,6 @@ void RedBlackTree<Type>::Delete(const Type KeyToDelete)
         {
             ReplacementNodeParent = MinNode->Parent;
             DeleteLeaf(MinNode);
-            ReplacementNode = nullptr;
         }
         else
         {
@@ -391,7 +397,8 @@ void RedBlackTree<Type>::Delete(const Type KeyToDelete)
                 ReplacementNode = MinNode->RChild;
             }
 
-            ReplacementNodeParent = ReplacementNode->Parent;
+            //ReplacementNodeParent = ReplacementNode->Parent;
+            ReplacementNodeParent = MinNode->Parent;
             DeleteNodeOneChild(MinNode);
         }
     }
@@ -402,13 +409,19 @@ void RedBlackTree<Type>::Delete(const Type KeyToDelete)
     {
         TreeFixDeletion(ReplacementNode, ReplacementNodeParent, KeyToDelete);
     }
+
+    NodeToDelete = nullptr;
+    ReplacementNode = nullptr;
+    ReplacementNodeParent = nullptr;
 }
 
 template<class Type>
 bool RedBlackTree<Type>::Find(const Type KeyToFind) const
 {
     Node<Type>* FoundNode = FindIntl(KeyToFind);
-    return FoundNode->Key == KeyToFind;
+    Type NodeKey = FoundNode->Key;
+    FoundNode = nullptr;
+    return NodeKey == KeyToFind;
 }
 
 template<class Type>
@@ -461,6 +474,8 @@ Node<Type>* RedBlackTree<Type>::FindIntl(const Type KeyToFind) const
         }
     }
 
+    CurrNode = nullptr;
+
     return Par;
 }
 
@@ -497,6 +512,7 @@ void RedBlackTree<Type>::TreeFixInsertion(Node<Type>* X)
                 Y->Parent->Colour = Node<Type>::NodeColour::Red;
                 CurrNode = Y->Parent;
             }
+
 
             Y = nullptr;
         }
@@ -535,7 +551,9 @@ void RedBlackTree<Type>::TreeFixInsertion(Node<Type>* X)
 template<class Type>
 void RedBlackTree<Type>::TreeFixDeletion(Node<Type>* X, Node<Type>* Y, Type DeletedKey)
 {
-    bool XWasNull = false;
+    Node<Type>* TempNode = nullptr;
+
+    //todo: if Y is a leaf node, what should we do here?
     if(!X)
     {
         X = new Node<Type>();
@@ -543,9 +561,9 @@ void RedBlackTree<Type>::TreeFixDeletion(Node<Type>* X, Node<Type>* Y, Type Dele
         X->Colour = Node<Type>::NodeColour::Black;
         X->Key = DeletedKey;
 
-        XWasNull = true;
+        TempNode = X;
 
-        if(!Y->LChild)
+        if (!Y->LChild)
         {
             Y->LChild = X;
         }
@@ -553,14 +571,17 @@ void RedBlackTree<Type>::TreeFixDeletion(Node<Type>* X, Node<Type>* Y, Type Dele
         {
             Y->RChild = X;
         }
-
     }
 
-    while((*X != *Root || XWasNull) && X->Colour == Node<Type>::NodeColour::Black)
+    while(*X != *Root && X->Colour == Node<Type>::NodeColour::Black)
     {
+        Node<Type>* Sibling;
+
         if((X->Parent->LChild) && *(X->Parent->LChild) == *X)
         {
-            Node<Type>* Sibling = X->Parent->RChild;
+            Sibling = X->Parent->RChild;
+
+            //case 1: our sibling is red
             if(Node<Type>::TestColourRed(Sibling))
             {
                 Sibling->Colour = Node<Type>::NodeColour::Black;
@@ -570,69 +591,39 @@ void RedBlackTree<Type>::TreeFixDeletion(Node<Type>* X, Node<Type>* Y, Type Dele
                 Sibling = X->Parent->RChild;
             }
 
-            //@todo: can sibling ever be null?
+            //todo: can sibling ever be null?
+            //case 2: Our sibling is black, with two blackk children
             if(Node<Type>::TestColourBlack(Sibling->LChild) && Node<Type>::TestColourBlack(Sibling->RChild))
             {
                 Sibling->Colour = Node<Type>::NodeColour::Red;
 
-                if(XWasNull)
-                {
-                    if((Y->LChild) && *Y->LChild == *X)
-                    {
-                        Y->LChild = nullptr;
-                    }
-                    else
-                    {
-                        Y->RChild = nullptr;
-                    }
-
-                    delete X;
-                    XWasNull = false;
-                    X = Y;
-                }
-                else
-                {
-                    X = X->Parent;
-                }
+                X = X->Parent;
             }
-            else if(Node<Type>::TestColourBlack(Sibling->RChild))
+            else
             {
-                Sibling->Colour = Node<Type>::NodeColour::Red;
-                Sibling->LChild->Colour = Node<Type>::NodeColour::Black;
-                RightRotation(Sibling);
-                Sibling = X->Parent->RChild;
+                //case 3: our sibling is black, and its right child is black as well
+                if(Node<Type>::TestColourBlack(Sibling->RChild))
+                {
+                    Sibling->Colour = Node<Type>::NodeColour::Red;
+                    Sibling->LChild->Colour = Node<Type>::NodeColour::Black;
+                    RightRotation(Sibling);
+                    Sibling = X->Parent->RChild;
+                }
 
-            }
-
-            if(Node<Type>::TestColourRed(Sibling->RChild))
-            {
-                //case 4
-                Sibling->Colour = Node<Type>::NodeColour::Red;
+                //case 4: our sibling is black and its right child is red
+                Sibling->Colour = X->Parent->Colour;
                 X->Parent->Colour = Node<Type>::NodeColour::Black;
                 Sibling->RChild->Colour = Node<Type>::NodeColour::Black;
                 LeftRotation(X->Parent);
 
-                if(XWasNull)
-                {
-                    if((Y->LChild) && *Y->LChild == *X)
-                    {
-                        Y->LChild = nullptr;
-                    }
-                    else
-                    {
-                        Y->RChild = nullptr;
-                    }
-
-                    delete X;
-                    XWasNull = false;
-                }
-
-                X = Root;
+                X = this->Root;
             }
         }
         else
         {
-            Node<Type>* Sibling = X->Parent->LChild;
+            Sibling = X->Parent->LChild;
+
+            //case 1: our sibling is red
             if(Node<Type>::TestColourRed(Sibling))
             {
                 Sibling->Colour = Node<Type>::NodeColour::Black;
@@ -643,66 +634,52 @@ void RedBlackTree<Type>::TreeFixDeletion(Node<Type>* X, Node<Type>* Y, Type Dele
             }
 
             //@todo: can sibling ever be null?
+            //case 2: Our sibling is black, with two blackk children
             if(Node<Type>::TestColourBlack(Sibling->LChild) && Node<Type>::TestColourBlack(Sibling->RChild))
             {
                 Sibling->Colour = Node<Type>::NodeColour::Red;
 
-                if(XWasNull)
-                {
-                    if((Y->LChild) && *Y->LChild == *X)
-                    {
-                        Y->LChild = nullptr;
-                    }
-                    else
-                    {
-                        Y->RChild = nullptr;
-                    }
-
-                    delete X;
-                    XWasNull = false;
-                    X = Y;
-                }
-                else
-                {
-                    X = X->Parent;
-                }
+                X = X->Parent;
             }
-            else if(Node<Type>::TestColourBlack(Sibling->LChild))
+            else
             {
-                Sibling->Colour = Node<Type>::NodeColour::Red;
-                Sibling->RChild->Colour = Node<Type>::NodeColour::Black;
-                LeftRotation(Sibling);
-                Sibling = X->Parent->LChild;
+                //case 3: our sibling is black, and its left child is black as well
+                if(Node<Type>::TestColourBlack(Sibling->LChild))
+                {
+                    Sibling->Colour = Node<Type>::NodeColour::Red;
+                    Sibling->RChild->Colour = Node<Type>::NodeColour::Black;
+                    LeftRotation(Sibling);
+                    Sibling = X->Parent->LChild;
+                }
 
-            }
-
-            if(Node<Type>::TestColourRed(Sibling->LChild))
-            {
-                //case 4
-                Sibling->Colour = Node<Type>::NodeColour::Red;
+                //case 4: our sibling is black and its left child is red
+                Sibling->Colour = X->Parent->Colour;
                 X->Parent->Colour = Node<Type>::NodeColour::Black;
                 Sibling->LChild->Colour = Node<Type>::NodeColour::Black;
                 RightRotation(X->Parent);
 
-                if(XWasNull)
-                {
-                    if((Y->LChild) && *Y->LChild == *X)
-                    {
-                        Y->LChild = nullptr;
-                    }
-                    else
-                    {
-                        Y->RChild = nullptr;
-                    }
-
-                    delete X;
-                    XWasNull = false;
-                }
                 X = Root;
             }
         }
+
+        Sibling = nullptr;
     }
     X->Colour = Node<Type>::NodeColour::Black;
+
+    if(TempNode)
+    {
+        if((Y->LChild) && *Y->LChild == *TempNode)
+        {
+            Y->LChild = nullptr;
+        }
+        else
+        {
+            Y->RChild = nullptr;
+        }
+
+        delete TempNode;
+        TempNode = nullptr;
+    }
 }
 
 template<class Type>
@@ -798,10 +775,12 @@ void RedBlackTree<Type>::DeleteNodeOneChild(Node<Type>* NodeToDelete)
     if(NodeToDelete->LChild)
     {
         ReplaceNode(NodeToDelete, NodeToDelete->LChild);
+        NodeToDelete->LChild = nullptr;
     }
     else
     {
         ReplaceNode(NodeToDelete, NodeToDelete->RChild);
+        NodeToDelete->RChild = nullptr;
     }
 
     delete NodeToDelete;
@@ -837,7 +816,7 @@ Node<Type>* RedBlackTree<Type>::FindMinIntl(Node<Type>* StartNode) const
         MinNode = CurrNode;
         CurrNode = CurrNode->LChild;
     }
-
+    CurrNode = nullptr;
     return MinNode;
 }
 
@@ -852,7 +831,7 @@ Node<Type>* RedBlackTree<Type>::FindMaxIntl(Node<Type>* StartNode) const
         MaxNode = CurrNode;
         CurrNode = CurrNode->RChild;
     }
-
+    CurrNode = nullptr;
     return MaxNode;
 }
 
