@@ -90,7 +90,7 @@ public:
     RedBlackTree(Type RootKey);
     ~RedBlackTree();
 
-    /***
+    /**
      * Inserts the given key into the tree, if it is not already in the tree
      * @param NewKey The new key to insert into the tree
      */
@@ -110,16 +110,16 @@ public:
     bool Find(const Type KeyToFind) const;
 
     /**
-     * Finds the node containing the minimum key in the tree
-     * @return The node containing the minimum key in the tree
+     * Finds the smallest key in the tree
+     * @return The smallest key in the tree
      */
-    Node<Type>* FindMin() const;
+    Type FindMin() const;
 
     /**
-     * Finds the node containing the maximum key in the tree
-     * @return The node containing the maximum key in the tree
+     * Finds the largest key in the tree
+     * @return The largest key in the tree
      */
-    Node<Type>* FindMax() const;
+    Type FindMax() const;
 
     /***
      * Makes and returns a sorted array of all elements in the tree
@@ -418,6 +418,9 @@ void RedBlackTree<Type>::Delete(const Type KeyToDelete)
 template<class Type>
 bool RedBlackTree<Type>::Find(const Type KeyToFind) const
 {
+    if(Size == 0)
+        return false;
+
     Node<Type>* FoundNode = FindIntl(KeyToFind);
     Type NodeKey = FoundNode->Key;
     FoundNode = nullptr;
@@ -425,15 +428,21 @@ bool RedBlackTree<Type>::Find(const Type KeyToFind) const
 }
 
 template<class Type>
-Node<Type>* RedBlackTree<Type>::FindMin() const
+Type RedBlackTree<Type>::FindMin() const
 {
-    return FindMinIntl(this->Root);
+    Node<Type>* Min = FindMinIntl(this->Root);
+    Type MinKey = Min->Key;
+    Min = nullptr;
+    return MinKey;
 }
 
 template<class Type>
-Node<Type>* RedBlackTree<Type>::FindMax() const
+Type RedBlackTree<Type>::FindMax() const
 {
-    return FindMaxIntl(this->Root);
+    Node<Type>* Max = FindMaxIntl(this->Root);
+    Type MaxKey = Max->Key;
+    Max = nullptr;
+    return MaxKey;
 }
 
 template<class Type>

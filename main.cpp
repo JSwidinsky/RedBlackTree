@@ -1,31 +1,37 @@
 #include <iostream>
-#include <fstream>
 #include <ctime>
 #include <cstdlib>
 #include <vector>
+#include <iomanip>
 #include "RedBlackTree.h"
 using namespace std;
 int main()
 {
     srand(time(0));
 
+    cout << fixed << setprecision(10);
+
+    float start = clock();
 
     RedBlackTree<int>* RBT = new RedBlackTree<int>();
-
-    ifstream Input("./RandNums.dat");
 
     vector<int> randNums;
 
     bool FillFromFile = true;
     if(FillFromFile)
     {
-        for (int i = 0; i < 100000; i++)
+        for (int i = 0; i < 2000000; i++)
         {
             int a;
-            Input >> a;
+            do
+            {
+                a = rand() % 10000000;
+            }
+            while(RBT->Find(a));
+
             RBT->Insert(a);
 
-            if(i % 2 == 0)
+            if(i % 1 == 0)
                 randNums.push_back(a);
         }
     }
@@ -37,15 +43,20 @@ int main()
         }
     }
 
+    cout << "Minimum element: " << RBT->FindMin() << endl;
+    cout << "Maximum element: " << RBT->FindMax() << endl;
+
+    cout << "Time to finish insertions: " << (clock() - start)/CLOCKS_PER_SEC << endl;
+
+    start = clock();
+
     for(int i : randNums)
     //for(int i = 1; i <= 10; i++)
     {
         RBT->Delete(i);
     }
 
-    //RBT->Delete(5);
-    //RBT->Delete(9);
-    //RBT->Delete(10);
+    cout << "Time to finish deletions: " << (clock() - start)/CLOCKS_PER_SEC << endl;
 
     //RBT->PreOrder();
     cout << RBT->GetSize() << endl;

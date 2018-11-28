@@ -13,11 +13,10 @@
   <component name="ChangeListManager">
     <list default="true" id="203271fc-f988-4de5-8870-d183da22fbf9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RedBlackTree.h" beforeDir="false" afterPath="$PROJECT_DIR$/RedBlackTree.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SmartPointer.h" beforeDir="false" afterPath="$PROJECT_DIR$/SmartPointer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RedBlackTree.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RedBlackTree.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RedBlackTree.dir/RedBlackTree.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RedBlackTree.dir/RedBlackTree.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RedBlackTree.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RedBlackTree.dir/main.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/RandNums.dat" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/RandNums.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/RedBlackTree" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/RedBlackTree" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
@@ -47,7 +46,7 @@
     <session id="-852533850">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="26" />
+          <entry key="project.closed" value="27" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.10" value="1" />
@@ -55,8 +54,8 @@
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.7" value="7" />
           <entry key="project.open.time.8" value="13" />
-          <entry key="project.open.time.9" value="2" />
-          <entry key="project.opened" value="28" />
+          <entry key="project.open.time.9" value="3" />
+          <entry key="project.opened" value="29" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -74,14 +73,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cpp" value="4546" />
-          <entry key="h" value="23663" />
+          <entry key="cpp" value="5158" />
+          <entry key="h" value="24090" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Doxygen file" value="47" />
-          <entry key="ObjectiveC" value="28162" />
+          <entry key="ObjectiveC" value="29201" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -90,11 +89,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="43" column="5" lean-forward="true" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
+            <state relative-caret-position="663">
+              <caret line="63" selection-start-line="63" selection-end-line="63" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -102,14 +101,13 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/RedBlackTree.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="117">
-              <caret line="333" lean-forward="true" selection-start-line="333" selection-end-line="333" />
+            <state relative-caret-position="267">
+              <caret line="92" column="7" lean-forward="true" selection-start-line="92" selection-start-column="7" selection-end-line="92" selection-end-column="7" />
               <folding>
                 <element signature="e#73#92#0" expanded="true" />
-                <element signature="e#14875#14887#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -121,6 +119,7 @@
     <findStrings>
       <find>XWasNull</find>
       <find>Node&lt;Type&gt;*</find>
+      <find>FindMin</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -131,8 +130,8 @@
       <list>
         <option value="$PROJECT_DIR$/RedBlackTree.cpp" />
         <option value="$PROJECT_DIR$/SmartPointer.h" />
-        <option value="$PROJECT_DIR$/RedBlackTree.h" />
         <option value="$PROJECT_DIR$/main.cpp" />
+        <option value="$PROJECT_DIR$/RedBlackTree.h" />
       </list>
     </option>
   </component>
@@ -254,11 +253,12 @@
       <workItem from="1543341055930" duration="1387000" />
       <workItem from="1543348427948" duration="8000" />
       <workItem from="1543348526978" duration="1352000" />
+      <workItem from="1543376046906" duration="1838000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70694000" />
+    <option name="totallyTimeSpent" value="72532000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -273,13 +273,13 @@
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49506578" visible="true" weight="0.2086331" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49506578" visible="true" weight="0.2108467" />
       <window_info id="Structure" order="1" sideWeight="0.5049342" side_tool="true" weight="0.19977863" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.2454054" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.34270272" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.34270272" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32972974" />
@@ -326,23 +326,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RedBlackTree.h">
+    <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="333" lean-forward="true" selection-start-line="333" selection-end-line="333" />
+        <state relative-caret-position="663">
+          <caret line="63" selection-start-line="63" selection-end-line="63" />
           <folding>
-            <element signature="e#73#92#0" expanded="true" />
-            <element signature="e#14875#14887#0" expanded="true" />
+            <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.cpp">
+    <entry file="file://$PROJECT_DIR$/RedBlackTree.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="43" column="5" lean-forward="true" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
+        <state relative-caret-position="267">
+          <caret line="92" column="7" lean-forward="true" selection-start-line="92" selection-start-column="7" selection-end-line="92" selection-end-column="7" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#73#92#0" expanded="true" />
           </folding>
         </state>
       </provider>
