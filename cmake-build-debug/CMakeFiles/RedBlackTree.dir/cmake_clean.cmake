@@ -1,6 +1,5 @@
 file(REMOVE_RECURSE
   "CMakeFiles/RedBlackTree.dir/main.cpp.o"
-  "CMakeFiles/RedBlackTree.dir/RedBlackTree.cpp.o"
   "RedBlackTree.pdb"
   "RedBlackTree"
 )

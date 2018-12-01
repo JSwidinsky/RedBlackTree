@@ -71,7 +71,7 @@ CMAKE_BINARY_DIR = /home/josh/Documents/RedBlackTree/cmake-build-debug
 CMakeFiles/RedBlackTree.dir/all:
 	$(MAKE) -f CMakeFiles/RedBlackTree.dir/build.make CMakeFiles/RedBlackTree.dir/depend
 	$(MAKE) -f CMakeFiles/RedBlackTree.dir/build.make CMakeFiles/RedBlackTree.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/josh/Documents/RedBlackTree/cmake-build-debug/CMakeFiles --progress-num=1,2,3 "Built target RedBlackTree"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/josh/Documents/RedBlackTree/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target RedBlackTree"
 .PHONY : CMakeFiles/RedBlackTree.dir/all
 
 # Include target in all.
@@ -81,7 +81,7 @@ all: CMakeFiles/RedBlackTree.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/RedBlackTree.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/josh/Documents/RedBlackTree/cmake-build-debug/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/josh/Documents/RedBlackTree/cmake-build-debug/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/RedBlackTree.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/josh/Documents/RedBlackTree/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/RedBlackTree.dir/rule

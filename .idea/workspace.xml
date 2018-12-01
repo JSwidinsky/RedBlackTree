@@ -13,11 +13,24 @@
   <component name="ChangeListManager">
     <list default="true" id="203271fc-f988-4de5-8870-d183da22fbf9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RedBlackTree.cpp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/RedBlackTree.h" beforeDir="false" afterPath="$PROJECT_DIR$/RedBlackTree.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RedBlackTree.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RedBlackTree.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RedBlackTree.dir/RedBlackTree.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RedBlackTree.dir/RedBlackTree.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SmartPointer.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RedBlackTree.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RedBlackTree.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RedBlackTree.dir/RedBlackTree.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RedBlackTree.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RedBlackTree.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RedBlackTree.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RedBlackTree.dir/cmake_clean.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RedBlackTree.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RedBlackTree.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RedBlackTree.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RedBlackTree.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RedBlackTree.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RedBlackTree.dir/link.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RedBlackTree.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RedBlackTree.dir/main.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RedBlackTree.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/RedBlackTree.dir/progress.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/RedBlackTree" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/RedBlackTree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/RedBlackTree.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/RedBlackTree.cbp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -46,16 +59,16 @@
     <session id="-852533850">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="27" />
+          <entry key="project.closed" value="28" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.1" value="1" />
-          <entry key="project.open.time.10" value="1" />
+          <entry key="project.open.time.10" value="3" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.7" value="7" />
           <entry key="project.open.time.8" value="13" />
           <entry key="project.open.time.9" value="3" />
-          <entry key="project.opened" value="29" />
+          <entry key="project.opened" value="31" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -63,24 +76,28 @@
           <entry key="RedBlackTree (disassembly)" value="1" />
           <entry key="cpp" value="1" />
           <entry key="h" value="7" />
+          <entry key="txt" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
+          <entry key="CMakeLists.txt" value="1" />
           <entry key="Disassembly" value="1" />
           <entry key="ObjectiveC" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cpp" value="5158" />
-          <entry key="h" value="24090" />
+          <entry key="cpp" value="6112" />
+          <entry key="h" value="24816" />
+          <entry key="txt" value="14" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Doxygen file" value="47" />
-          <entry key="ObjectiveC" value="29201" />
+          <entry key="CMakeLists.txt" value="14" />
+          <entry key="Doxygen file" value="52" />
+          <entry key="ObjectiveC" value="30876" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -89,11 +106,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="663">
-              <caret line="63" selection-start-line="63" selection-end-line="63" />
+            <state relative-caret-position="465">
+              <caret line="28" column="10" lean-forward="true" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -101,13 +118,33 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RedBlackTree.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
-              <caret line="92" column="7" lean-forward="true" selection-start-line="92" selection-start-column="7" selection-end-line="92" selection-end-column="7" />
+            <state relative-caret-position="516">
+              <caret line="882" column="11" lean-forward="true" selection-start-line="882" selection-start-column="11" selection-end-line="882" selection-end-column="11" />
               <folding>
                 <element signature="e#73#92#0" expanded="true" />
+                <element signature="e#12242#12254#0" expanded="true" />
+                <element signature="e#12361#12373#0" expanded="true" />
+                <element signature="e#12462#12474#0" expanded="true" />
+                <element signature="e#12541#12553#0" expanded="true" />
+                <element signature="e#12626#12638#0" expanded="true" />
+                <element signature="e#12713#12725#0" expanded="true" />
+                <element signature="e#13106#13118#0" expanded="true" />
+                <element signature="e#15065#15077#0" expanded="true" />
+                <element signature="e#18415#18427#0" expanded="true" />
+                <element signature="e#18954#18966#0" expanded="true" />
+                <element signature="e#19405#19417#0" expanded="true" />
+                <element signature="e#19719#19731#0" expanded="true" />
+                <element signature="e#20061#20073#0" expanded="true" />
+                <element signature="e#20444#20456#0" expanded="true" />
+                <element signature="e#20714#20726#0" expanded="true" />
+                <element signature="e#20784#20796#0" expanded="true" />
+                <element signature="e#22641#22653#0" expanded="true" />
+                <element signature="e#20984#20996#0" expanded="true" />
+                <element signature="e#21239#21251#0" expanded="true" />
+                <element signature="e#21412#21424#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -130,8 +167,9 @@
       <list>
         <option value="$PROJECT_DIR$/RedBlackTree.cpp" />
         <option value="$PROJECT_DIR$/SmartPointer.h" />
-        <option value="$PROJECT_DIR$/main.cpp" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/RedBlackTree.h" />
+        <option value="$PROJECT_DIR$/main.cpp" />
       </list>
     </option>
   </component>
@@ -254,11 +292,13 @@
       <workItem from="1543348427948" duration="8000" />
       <workItem from="1543348526978" duration="1352000" />
       <workItem from="1543376046906" duration="1838000" />
+      <workItem from="1543457244578" duration="675000" />
+      <workItem from="1543693812984" duration="2579000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72532000" />
+    <option name="totallyTimeSpent" value="75786000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -273,7 +313,7 @@
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49506578" visible="true" weight="0.2108467" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49506578" visible="true" weight="0.21527393" />
       <window_info id="Structure" order="1" sideWeight="0.5049342" side_tool="true" weight="0.19977863" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -288,7 +328,7 @@
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32901832" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.32972974" />
-      <window_info anchor="bottom" id="CMake" order="12" />
+      <window_info anchor="bottom" id="CMake" order="12" weight="0.32972974" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -302,16 +342,7 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RedBlackTree.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/RedBlackTree.cpp" />
     <entry file="file:///usr/lib/gcc/x86_64-linux-gnu/7/include-fixed/limits.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="222">
@@ -326,22 +357,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.cpp">
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="63" selection-start-line="63" selection-end-line="63" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="85">
+          <caret line="5" column="50" selection-start-line="5" selection-start-column="50" selection-end-line="5" selection-end-column="50" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/RedBlackTree.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="92" column="7" lean-forward="true" selection-start-line="92" selection-start-column="7" selection-end-line="92" selection-end-column="7" />
+        <state relative-caret-position="516">
+          <caret line="882" column="11" lean-forward="true" selection-start-line="882" selection-start-column="11" selection-end-line="882" selection-end-column="11" />
           <folding>
             <element signature="e#73#92#0" expanded="true" />
+            <element signature="e#12242#12254#0" expanded="true" />
+            <element signature="e#12361#12373#0" expanded="true" />
+            <element signature="e#12462#12474#0" expanded="true" />
+            <element signature="e#12541#12553#0" expanded="true" />
+            <element signature="e#12626#12638#0" expanded="true" />
+            <element signature="e#12713#12725#0" expanded="true" />
+            <element signature="e#13106#13118#0" expanded="true" />
+            <element signature="e#15065#15077#0" expanded="true" />
+            <element signature="e#18415#18427#0" expanded="true" />
+            <element signature="e#18954#18966#0" expanded="true" />
+            <element signature="e#19405#19417#0" expanded="true" />
+            <element signature="e#19719#19731#0" expanded="true" />
+            <element signature="e#20061#20073#0" expanded="true" />
+            <element signature="e#20444#20456#0" expanded="true" />
+            <element signature="e#20714#20726#0" expanded="true" />
+            <element signature="e#20784#20796#0" expanded="true" />
+            <element signature="e#22641#22653#0" expanded="true" />
+            <element signature="e#20984#20996#0" expanded="true" />
+            <element signature="e#21239#21251#0" expanded="true" />
+            <element signature="e#21412#21424#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="28" column="10" lean-forward="true" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -5,64 +5,43 @@
 #include <iomanip>
 #include "RedBlackTree.h"
 using namespace std;
+
+/**
+ * Function that inserts a series of random numbers into a red black tree
+ * @param Tree The tree to insert the elements into
+ * @param NumEntriesToAdd How many entries should we add to the tree?
+ * @param RandRange The interval for which the numbers will be added; interval is [0, RandRange)
+ * */
+void InsertIntoTree(RedBlackTree<int>& Tree, int NumEntriesToAdd, int RandRange)
+{
+    float start = clock();
+    for (int i = 0; i < NumEntriesToAdd; i++)
+    {
+        int a = rand() % RandRange;
+
+        Tree.Insert(a);
+    }
+
+    cout << "Time for insertion to finish: " << (clock() - start) / CLOCKS_PER_SEC << endl;
+}
+
+
 int main()
 {
     srand(time(0));
 
     cout << fixed << setprecision(10);
 
-    float start = clock();
+    RedBlackTree<int> RBTree;
 
-    RedBlackTree<int>* RBT = new RedBlackTree<int>();
+    for(int i = 0; i < 5; i++)
+        InsertIntoTree(RBTree, 1000000, 10000000 * (i + 1));
 
-    vector<int> randNums;
+    cout << "Minimum element: " << RBTree.FindMin() << endl;
+    cout << "Maximum element: " << RBTree.FindMax() << endl;
 
-    bool FillFromFile = true;
-    if(FillFromFile)
-    {
-        for (int i = 0; i < 2000000; i++)
-        {
-            int a;
-            do
-            {
-                a = rand() % 10000000;
-            }
-            while(RBT->Find(a));
-
-            RBT->Insert(a);
-
-            if(i % 1 == 0)
-                randNums.push_back(a);
-        }
-    }
-    else
-    {
-        for (int i = 1; i <= 10; i++)
-        {
-            RBT->Insert(i);
-        }
-    }
-
-    cout << "Minimum element: " << RBT->FindMin() << endl;
-    cout << "Maximum element: " << RBT->FindMax() << endl;
-
-    cout << "Time to finish insertions: " << (clock() - start)/CLOCKS_PER_SEC << endl;
-
-    start = clock();
-
-    for(int i : randNums)
-    //for(int i = 1; i <= 10; i++)
-    {
-        RBT->Delete(i);
-    }
-
-    cout << "Time to finish deletions: " << (clock() - start)/CLOCKS_PER_SEC << endl;
-
-    //RBT->PreOrder();
-    cout << RBT->GetSize() << endl;
-    //RBT->InOrder();
-
-    delete RBT;
+    cout << RBTree.GetSize() << endl;
+    cout << RBTree.GetHeight() << " " << RBTree.GetBlackHeight() << endl;
 
     return 0;
 }

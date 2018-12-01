@@ -123,33 +123,6 @@ RedBlackTree/fast:
 	$(MAKE) -f CMakeFiles/RedBlackTree.dir/build.make CMakeFiles/RedBlackTree.dir/build
 .PHONY : RedBlackTree/fast
 
-RedBlackTree.o: RedBlackTree.cpp.o
-
-.PHONY : RedBlackTree.o
-
-# target to build an object file
-RedBlackTree.cpp.o:
-	$(MAKE) -f CMakeFiles/RedBlackTree.dir/build.make CMakeFiles/RedBlackTree.dir/RedBlackTree.cpp.o
-.PHONY : RedBlackTree.cpp.o
-
-RedBlackTree.i: RedBlackTree.cpp.i
-
-.PHONY : RedBlackTree.i
-
-# target to preprocess a source file
-RedBlackTree.cpp.i:
-	$(MAKE) -f CMakeFiles/RedBlackTree.dir/build.make CMakeFiles/RedBlackTree.dir/RedBlackTree.cpp.i
-.PHONY : RedBlackTree.cpp.i
-
-RedBlackTree.s: RedBlackTree.cpp.s
-
-.PHONY : RedBlackTree.s
-
-# target to generate assembly for a file
-RedBlackTree.cpp.s:
-	$(MAKE) -f CMakeFiles/RedBlackTree.dir/build.make CMakeFiles/RedBlackTree.dir/RedBlackTree.cpp.s
-.PHONY : RedBlackTree.cpp.s
-
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -186,9 +159,6 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... RedBlackTree"
-	@echo "... RedBlackTree.o"
-	@echo "... RedBlackTree.i"
-	@echo "... RedBlackTree.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
